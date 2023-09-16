@@ -25,7 +25,6 @@ class Program
                 letter = "A";
                 Console.WriteLine($"Grade: {letter} : {passed}");
             }
-            
         }
         else if (grade < 90 && grade >= 80)
         {
@@ -44,7 +43,6 @@ class Program
                 letter = "B";
                 Console.WriteLine($"Grade: {letter} : {passed}");
             }
-            
         }
         else if (grade < 80 && grade >= 70)
         {
@@ -63,7 +61,6 @@ class Program
                 letter = "C";
                 Console.WriteLine($"Grade: {letter} : {passed}");
             }
-            
         }
         else if (grade < 70 && grade >= 60)
         {
