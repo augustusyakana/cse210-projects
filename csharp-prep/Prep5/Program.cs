@@ -12,10 +12,9 @@ class Program
 
     }
 
-    static string DisplayWelcome()
+    static void DisplayWelcome()
     {
-        string welcome = "Welcome to the Program!";
-        return welcome;
+        Console.WriteLine("Welcome to the program!");
     }
 
     static string PromptUserName()
