@@ -1,16 +1,18 @@
 public class Journal {
-    public List<string> entries = new List<string>();
+    public List<string> _entries = new List<string>();
 
     public void displayEntries() {
         Console.WriteLine("Entries: ");
-        foreach (string entry in entries) {
+        foreach (string entry in _entries) {
             Console.WriteLine($"{entry}\n");
         }
     }
-
+    // saves the entries to a file and allows the user to set the file name.
     public void saveEntries() {
-        using(StreamWriter outputFile = new StreamWriter("journal.txt")){
-                foreach(string entry in entries){
+        Console.Write("Enter name of file to save to: ");
+        string fileName = Console.ReadLine();
+        using(StreamWriter outputFile = new StreamWriter(fileName)){
+                foreach(string entry in _entries){
                     outputFile.WriteLine(entry);
                 };
         }
@@ -21,9 +23,11 @@ public class Journal {
         string fileName = Console.ReadLine();
         var lines = System.IO.File.ReadLines(fileName);
 
+        // iterate through the lines and add the lines to 
+        // the journal entry list
         foreach (string line in lines){
             string fileEntry = line;
-            entries.Add(fileEntry);
+            _entries.Add(fileEntry);
         }
     }
 }

@@ -1,5 +1,5 @@
 public class PromptGenerator {
-    public List<string> prompts = new List<string>()
+    public List<string> _prompts = new List<string>()
     {
         "Who was the most interesting person I interacted with today?",
         "What was the best part of my day?",
@@ -10,8 +10,8 @@ public class PromptGenerator {
 
     public string getRandomString() {
         Random randNum = new Random();
-        int aRandomPos = randNum.Next(prompts.Count);
-        return prompts[aRandomPos];
+        int aRandomPos = randNum.Next(_prompts.Count);
+        return _prompts[aRandomPos];
     }
 
 
