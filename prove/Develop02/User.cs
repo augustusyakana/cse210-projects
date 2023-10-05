@@ -6,7 +6,4 @@ public class User {
         Console.Write("Logged By: ");
         Console.WriteLine($"{_firstName} ({_occupation})");
     }
-
-
-    
 }
