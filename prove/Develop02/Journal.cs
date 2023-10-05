@@ -18,6 +18,7 @@ public class Journal {
         }
     }
 
+    // load file, allow user to set file name to be loaded
     public void loadEntries() {
         Console.Write("What is the name of the file? ");
         string fileName = Console.ReadLine();
