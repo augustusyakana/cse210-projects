@@ -7,7 +7,7 @@ class Program
         // instantiate and assign new date variable with current date
         // and convert to a string with the format (MM/dd/yyyy)
         var fulldate = DateTime.Now;
-        string date = fulldate.ToString("MM/dd/yyy");
+        string date = fulldate.ToString("MM/dd/yyyy");
 
         Entry entry1 = new Entry(); // new Entry object
         PromptGenerator promptGenerator = new PromptGenerator(); // new PromptGenerator object
