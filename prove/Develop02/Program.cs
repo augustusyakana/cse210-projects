@@ -47,12 +47,14 @@ class Program
 
                 // getting user response and storing in variable
                 string entry = Console.ReadLine();
+                string nameInfo = user.displayName();
 
                 // sending data(values) to the Entry class object and 
                 // using the object method to package (format) the data
                 entry1._date = date;
                 entry1._entry = entry;
                 entry1._prompt = prompt;
+                entry1._nameInfo = nameInfo;
                 string pkgdEntry = entry1.pkgEntry();
                 
                 // adding the packaged data to the journal list
@@ -60,7 +62,7 @@ class Program
 
             } else if (choice == 2){
                 // displaying user info and logged entries
-                user.displayName();
+                
                 journal.displayEntries();
 
             } else if (choice == 3){
