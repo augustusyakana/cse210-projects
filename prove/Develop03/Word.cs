@@ -10,5 +10,14 @@ public class Word{
         }
     }
 
-    
+    public void setWord(string word){
+        _word = word;
+        setStatus();
+    }
+
+    public string getWord(){
+        return _word;
+    }
+
+
 }

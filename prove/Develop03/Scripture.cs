@@ -12,6 +12,8 @@ public class Scripture {
         separateWords();
     }
 
+    
+
     public string getScripture(){
         return $"{_reference} \n{_scripture}";
     }
@@ -22,6 +24,7 @@ public class Scripture {
             _words.Add(word);
         }
     }
+
 
     public void hideWords() {
         string[] scripture = _scripture.Split(" ");
