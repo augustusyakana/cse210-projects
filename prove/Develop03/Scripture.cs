@@ -26,12 +26,12 @@ public class Scripture {
     }
 
 
-    public string getWord() {
+    public string hideWord() {
         var random = new Random();
         int index = random.Next(_words.Count - 1);
         string randomWord = _words[index];
         
-        
+
     }
 
     
