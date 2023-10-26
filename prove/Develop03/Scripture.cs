@@ -26,35 +26,14 @@ public class Scripture {
     }
 
 
-    public void hideWords() {
-        string[] scripture = _scripture.Split(" ");
-        
-
+    public string getWord() {
         var random = new Random();
         int index = random.Next(_words.Count - 1);
         string randomWord = _words[index];
-
-        string word = randomWord;
-        string result = new string('_', word.Length);
-
-        foreach (string text in scripture){
-
-            if (text == word){
-                if (word != result){
-                    _scripture = _scripture.Replace(word, result);
-                } else {
-                    hideWords();
-                    
-                }
-
-            }
-        }
+        
+        
     }
 
-    // for testing
-    // public void seeWords(){
-    //     _words.ForEach((word) =>{
-    //         Console.WriteLine(word);
-    //     });
-    // }
+    
+    
 }

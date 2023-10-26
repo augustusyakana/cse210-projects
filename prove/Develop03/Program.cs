@@ -13,26 +13,23 @@ class Program
         string scriptureText = "And behold, I tell you these things that ye may learn wisdom; that ye may learn that when ye are in the service of your fellow beings ye are only in the service of your God.";
         Reference reference = new Reference(book, chapter, verse);
         string scriptureReference = reference.getReference();
-
+        
         Scripture scripture = new Scripture(scriptureReference, scriptureText);
+        string rndmWord = scripture.getWord();
         string response = "playing";
         // scripture.seeWords();
         
 
         while (response != "quit"){
+            Word word = new Word(rndmWord);
             Console.WriteLine(scripture.getScripture());
             Console.Write("\nPress Enter to hide words in the scripture, or enter 'quit' to exit: ");
             response = Console.ReadLine();
-            scripture.hideWords();
+            string RandomWord = word.getWord();
+            bool status = word.getStatus();
+            
             Console.Clear();
         }
-
-        
-        
-
-
-
-
         
     }
 }
