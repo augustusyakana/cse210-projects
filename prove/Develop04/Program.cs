@@ -22,7 +22,17 @@ class Program
 
             if (response == 1) 
             {
-                Console.WriteLine("You chose the breathing activity");
+                string title = "Breathing Activity";
+                string description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
+                int time = 10;
+                string endingMsg = "Thank you for participating in the breathing program";
+                Activity activity1 = new Activity(title, time, description, endingMsg);
+                activity1.displayStartingMessage();
+                Thread.Sleep(2000);
+                activity1.animation();
+                activity1.displayEndingMessage();
+
+
             } else if (response == 2) 
             {
                 Console.WriteLine("You chose the Reflection Activity");

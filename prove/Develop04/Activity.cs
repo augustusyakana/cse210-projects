@@ -6,30 +6,66 @@ public class Activity
     private string _description;
     private int _time;
 
-    public Activity(string title, int time, string description)
+    private string _endingMsg;
+
+    public Activity(string title, int time, string description, string endingMsg)
     {
         _title = title;
         _time = time;
         _description = description;
+        _endingMsg = endingMsg;
+
     }
 
-    private void displayStartingMessage() 
+    public void displayStartingMessage() 
     {
-        Console.WriteLine("**Starting message**");
+        Console.WriteLine(createStartingMessage());
+        
     }
 
-    private void displayEndingMessage()
+    public void displayEndingMessage()
     {
-        Console.WriteLine("**Ending Message**");
+        Console.WriteLine(_endingMsg);
     }
 
-    private void pauseAndCountdown()
+    public void pauseAndCountdown()
     {
         Console.WriteLine("**Insert pause and countdown**");
     }
 
-    private void animation()
+    public void animation()
     {
-        Console.WriteLine("**Insert Animation**");
+        
+        List<string> animationSymbols = new List<string>();
+        animationSymbols.Add(".");
+        animationSymbols.Add(":");
+        animationSymbols.Add(".");
+        animationSymbols.Add(" ");
+
+
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(_time);
+
+        int i = 0;
+
+        while (DateTime.Now < endTime) 
+        {
+            string s = animationSymbols[i];
+            Console.Write(s);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+
+            i++;
+
+            if (i >= animationSymbols.Count)
+            {
+                i = 0;
+            }
+        }
+    }
+
+    private string createStartingMessage()
+    {
+       return $"Welcome to the {_title}\n {_description}";
     }
 }
