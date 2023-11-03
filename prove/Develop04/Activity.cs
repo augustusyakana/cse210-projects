@@ -44,7 +44,7 @@ public class Activity
 
 
         DateTime startTime = DateTime.Now;
-        DateTime endTime = startTime.AddSeconds(_time);
+        DateTime endTime = startTime.AddSeconds(6);
 
         int i = 0;
 

@@ -24,7 +24,9 @@ class Program
             {
                 string title = "Breathing Activity";
                 string description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
-                int time = 10;
+                Console.Write("How long do you wish to do this activity? (in seconds): ");
+                string num = Console.ReadLine();
+                int time = int.Parse(num);
                 string endingMsg = "Thank you for participating in the breathing program";
                 Activity activity1 = new Activity(title, time, description, endingMsg);
                 activity1.displayStartingMessage();
