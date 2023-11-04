@@ -52,8 +52,23 @@ class Program
                 string endingMsg = $"CONGRATULATIONS on completing {time} seconds of the Reflecting Activity";
 
                 Reflecting reflecting = new Reflecting(title, time, description, endingMsg);
+                Questions questions1 = new Questions();
+                Prompts prompts1 = new Prompts();
+               
+                string rndmPrompt = prompts1.getRandomPrompt();
+                reflecting.setPrompt(rndmPrompt);
                 
+                Console.Clear();
                 reflecting.displayStartingMessage();
+                reflecting.animation(6);
+                Console.WriteLine("");
+                reflecting.session();
+                Console.Write("Please wait...");
+                reflecting.animation(5);
+                Console.WriteLine("");
+                reflecting.displayEndingMessage();
+                Thread.Sleep(4000);
+                Console.Clear();
                 
 
             } else if (response == 3)

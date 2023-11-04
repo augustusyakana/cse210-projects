@@ -9,29 +9,65 @@ public class Reflecting : Activity
         
     }
 
+    Questions questions = new Questions();
+
     public void displayPrompt()
     {
+        
         Console.WriteLine(_prompt);
-
-
+        Console.WriteLine("");
     }
 
     public void displayQuestion()
     {
-        
-        Console.WriteLine(_question);
+        setQuestion();
+        Console.Write(_question);
+        animation(6);
+        Console.WriteLine("");
     }
 
-    private void setPrompt()
+    public void setPrompt(string prompt)
     {
-        Prompts prompts = new Prompts();
-        _prompt = prompts.getRandomPrompt();
+        _prompt = prompt;
+        
+    }
+
+    public async void session()
+    {
+        
+        displayPrompt();
+        Thread.Sleep(4000);
+        Console.Write("Get ready...");
+        animation(10);
+        Console.WriteLine("");
+
+        var countdownTask = StartCountdownAsync(TimeSpan.FromSeconds(_time));
+
+        bool sessionDone = false;
+
+        while (!sessionDone)
+        {
+            displayQuestion();
+
+            if (countdownTask.IsCompleted)
+            {
+                sessionDone = true;
+            }
+
+        }
+        await countdownTask;
+
+    }
+
+    private async Task StartCountdownAsync(TimeSpan duration)
+    {
+        await Task.Delay(duration);
     }
 
     private void setQuestion()
     {
-        Questions questions = new Questions();
         _question = questions.getRandomQuestion();
+        
     }
 
     private void countDown(int time)
