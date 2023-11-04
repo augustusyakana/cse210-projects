@@ -1,10 +1,11 @@
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 
 public class Activity
 {
     private string _title;
     private string _description;
-    private int _time;
+    protected int _time;
 
     private string _endingMsg;
 
@@ -28,23 +29,21 @@ public class Activity
         Console.WriteLine(_endingMsg);
     }
 
-    public void pauseAndCountdown()
-    {
-        Console.WriteLine("**Insert pause and countdown**");
-    }
-
-    public void animation()
+    public void animation(int time)
     {
         
         List<string> animationSymbols = new List<string>();
-        animationSymbols.Add(".");
-        animationSymbols.Add(":");
-        animationSymbols.Add(".");
-        animationSymbols.Add(" ");
-
+        animationSymbols.Add("-");
+        animationSymbols.Add("\\");
+        animationSymbols.Add("|");
+        animationSymbols.Add("/");
+        animationSymbols.Add("-");
+        animationSymbols.Add("\\");
+        animationSymbols.Add("|");
+        animationSymbols.Add("/");
 
         DateTime startTime = DateTime.Now;
-        DateTime endTime = startTime.AddSeconds(6);
+        DateTime endTime = startTime.AddSeconds(time);
 
         int i = 0;
 
@@ -52,7 +51,7 @@ public class Activity
         {
             string s = animationSymbols[i];
             Console.Write(s);
-            Thread.Sleep(1000);
+            Thread.Sleep(200);
             Console.Write("\b \b");
 
             i++;
@@ -66,6 +65,6 @@ public class Activity
 
     private string createStartingMessage()
     {
-       return $"Welcome to the {_title}\n {_description}";
+       return $"\nWelcome to the {_title}\n {_description}\n";
     }
 }

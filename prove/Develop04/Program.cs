@@ -27,17 +27,35 @@ class Program
                 Console.Write("How long do you wish to do this activity? (in seconds): ");
                 string num = Console.ReadLine();
                 int time = int.Parse(num);
-                string endingMsg = "Thank you for participating in the breathing program";
-                Activity activity1 = new Activity(title, time, description, endingMsg);
-                activity1.displayStartingMessage();
-                Thread.Sleep(2000);
-                activity1.animation();
-                activity1.displayEndingMessage();
-
+                string endingMsg = $"CONGRATULATIONS on completing {time} seconds of the Breathing Activity";
+                Breathing breathing1 = new Breathing(title, time, description, endingMsg);
+                Console.Clear();
+                breathing1.displayStartingMessage();
+                Console.Write("Get ready...");
+                breathing1.animation(6);
+                Console.WriteLine("");
+                breathing1.session();
+                Console.WriteLine("Please wait... \n");
+                breathing1.animation(6);
+                breathing1.displayEndingMessage();
+                Thread.Sleep(3000);
+                Console.Clear();
+                
 
             } else if (response == 2) 
             {
-                Console.WriteLine("You chose the Reflection Activity");
+                string title = "Reflecting Activity";
+                string description = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+                Console.Write("How long do you wish to do this activity? (in seconds): ");
+                string num = Console.ReadLine();
+                int time = int.Parse(num);
+                string endingMsg = $"CONGRATULATIONS on completing {time} seconds of the Reflecting Activity";
+
+                Reflecting reflecting = new Reflecting(title, time, description, endingMsg);
+                
+                reflecting.displayStartingMessage();
+                
+
             } else if (response == 3)
             {
                 Console.WriteLine("You chose the Listing Activity");
