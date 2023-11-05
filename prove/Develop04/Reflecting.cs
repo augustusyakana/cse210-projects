@@ -14,7 +14,7 @@ public class Reflecting : Activity
     public void displayPrompt()
     {
         
-        Console.WriteLine(_prompt);
+        Console.WriteLine($"--- {_prompt} ---");
         Console.WriteLine("");
     }
 
@@ -36,9 +36,10 @@ public class Reflecting : Activity
     {
         
         displayPrompt();
-        Thread.Sleep(4000);
-        Console.Write("Get ready...");
-        animation(10);
+        Console.WriteLine("When you have something in mind, press Enter to continue.");
+        Console.ReadLine();
+        Console.Write("Now ponder on each of the following questions as they relate to this experience. \nYou may begin in: ");
+        countDown(8);
         Console.WriteLine("");
 
         var countdownTask = StartCountdownAsync(TimeSpan.FromSeconds(_time));

@@ -4,13 +4,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to the mindfulness program: ");
+        Console.WriteLine("\nWelcome to the mindfulness program: ");
         int response = 0;
 
         while (response != 4) 
         {
 
-            Console.WriteLine("Choose an activity below: ");
+            Console.WriteLine("\nChoose an activity below: ");
             Console.WriteLine("1. Breathing Activity");
             Console.WriteLine("2. Reflection Activity");
             Console.WriteLine("3. Listing Activity");
@@ -35,7 +35,7 @@ class Program
                 breathing1.animation(6);
                 Console.WriteLine("");
                 breathing1.session();
-                Console.WriteLine("Please wait... \n");
+                Console.WriteLine("Well Done!\n");
                 breathing1.animation(6);
                 breathing1.displayEndingMessage();
                 Thread.Sleep(3000);
@@ -63,7 +63,7 @@ class Program
                 reflecting.animation(6);
                 Console.WriteLine("");
                 reflecting.session();
-                Console.Write("Please wait...");
+                Console.Write("Well Done! ");
                 reflecting.animation(5);
                 Console.WriteLine("");
                 reflecting.displayEndingMessage();
@@ -73,10 +73,34 @@ class Program
 
             } else if (response == 3)
             {
-                Console.WriteLine("You chose the Listing Activity");
+                string title = "Listing Activity";
+                string description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+                Console.Write("How long do you wish to do this activity? (in seconds): ");
+                string num = Console.ReadLine();
+                int time = int.Parse(num);
+                string endingMsg = $"CONGRATULATIONS on completing {time} seconds of the {title}";
+                Listing listing = new Listing(title, time, description, endingMsg);
+
+                Console.Clear();
+                listing.displayStartingMessage();
+                listing.animation(6);
+                listing.session();
+                listing.displayEndingMessage();
+                Thread.Sleep(5000);
+                Console.Clear();
+
             } else if (response == 4) 
             {
-                Console.WriteLine("Thank you!");
+                Activity activity2 = new Activity();
+                Console.Clear();
+                Console.Write("Closing Program... ");
+                activity2.animation(6);
+
+                Console.Clear();
+                Console.WriteLine("\nThank you for using the Mindfulness App!");
+                Console.WriteLine("\nSee you again soon!");
+
+                
                 break;
             } else 
             {

@@ -18,6 +18,11 @@ public class Activity
 
     }
 
+    public Activity()
+    {
+        
+    }
+
     public void displayStartingMessage() 
     {
         Console.WriteLine(createStartingMessage());
