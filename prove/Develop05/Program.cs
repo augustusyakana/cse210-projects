@@ -32,6 +32,21 @@ class Program
 
             if (response == 1)
             {
+                Console.WriteLine("\nThe types of goals are:");
+                Console.WriteLine("1. Simple Goal");
+                Console.WriteLine("2. Eternal Goal");
+                Console.WriteLine("3. Checklist Goal");
+                Console.Write("Which type would you like to create? ");
+                string typeChoice = Console.ReadLine();
+                int type = int.Parse(typeChoice);
+
+                if (type == 1)
+                {
+                    // create instance of GOAL derived class
+                    // Right here //
+                    string goalType = "Simple Goal";
+
+                }
                 
             }
 
