@@ -15,8 +15,8 @@ public class Goal
         _basePoints = basePoints;
     }
 
-    public virtual void EarnPoints(int points)
+    public virtual int EarnPoints(int points, int total)
     {
-        points += _basePoints;
+        return points += total;
     }
 }

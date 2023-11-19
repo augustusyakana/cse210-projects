@@ -43,8 +43,19 @@ class Program
                 if (type == 1)
                 {
                     // create instance of GOAL derived class
-                    // Right here //
                     string goalType = "Simple Goal";
+                    bool complete = false;
+                    Console.Write("What is the name of this goal? ");
+                    string name = Console.ReadLine();
+
+                    Console.Write("Provide a short description of the goal: ");
+                    string description = Console.ReadLine();
+
+                    Console.Write("What is the base point amount for this goal? ");
+                    string points = Console.ReadLine();
+                    int simplePoints = int.Parse(points);
+
+                    Simple simpleGoal = new Simple(complete, goalType, name, description, simplePoints);
 
                 }
                 
