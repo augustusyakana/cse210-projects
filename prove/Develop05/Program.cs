@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
@@ -8,6 +9,7 @@ class Program
 
         int totalPoints = 0;
         List<string> goals = new List<string>();
+        List<Goal> goalObjects = new List<Goal>();
 
 
         Console.WriteLine("\nWelcome to the Eternal Quest Program!");
@@ -60,6 +62,7 @@ class Program
                     Simple simpleGoal = new Simple(complete, goalType, name, description, simplePoints);
 
                     goals.Add(simpleGoal.AssembleGoal());
+                    goalObjects.Add(simpleGoal);
                     Console.WriteLine("Goal Added!\n");
 
                 } else if (type == 2)
@@ -79,6 +82,7 @@ class Program
 
                     Eternal eternalGoal = new Eternal(complete, goalType, name, description, basePoints);
                     goals.Add(eternalGoal.AssembleGoal());
+                    goalObjects.Add(eternalGoal);
                     Console.WriteLine("Goal Added!\n");
 
                 } else if (type == 3)
@@ -107,6 +111,7 @@ class Program
 
                     Checklist checklistGoal = new Checklist(bonusComplete, bonusPoints, bonusTimes, complete, goalType, name, description, basePoints);
                     goals.Add(checklistGoal.AssembleGoal());
+                    goalObjects.Add(checklistGoal);
                     Console.WriteLine("Goal Added!\n");
 
                 }
@@ -123,7 +128,18 @@ class Program
             }
             else if (response == 3)
             {
-                
+                Console.WriteLine("What is the name of the file you want to save to? ");
+                string fileName = Console.ReadLine();
+
+                using (StreamWriter outputFIle = new StreamWriter(fileName))
+                {
+                    outputFIle.WriteLine(totalPoints);
+                    
+                    foreach (Goal goal in goalObjects)
+                    {
+                        outputFIle.WriteLine(goal.saveInfo());
+                    }
+                }
             }
 
         }
