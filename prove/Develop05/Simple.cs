@@ -12,8 +12,13 @@ public class Simple : Goal
         return base.AssembleGoal();
     }
 
-    public override int EarnPoints(int points, int total)
+    public override int EarnPoints(int total)
     {
-       return base.EarnPoints(points, total);
+       return base.EarnPoints(total);
+    }
+
+    public override string saveInfo()
+    {
+        return base.saveInfo();
     }
 }

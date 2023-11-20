@@ -1,0 +1,4 @@
+100
+SimpleGoal: Complete Project, Finish programming project today. , 100, False
+EternalGoal: Practice coding everyday, Practice atleast 2hrs per day, 50
+ChecklistGoal: Get all Certs & Degrees, Get all certificates and degress from BYU, 150, False, 2000, 5, 0

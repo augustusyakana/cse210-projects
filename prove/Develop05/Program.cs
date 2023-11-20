@@ -14,7 +14,6 @@ class Program
 
         Console.WriteLine("\nWelcome to the Eternal Quest Program!");
         Console.WriteLine("Loading up the program.. ");
-        Thread.Sleep(5000);
         Console.Clear();
         
         
@@ -47,7 +46,7 @@ class Program
                 {
                     Console.WriteLine("\n");
                     // create instance of GOAL derived class
-                    string goalType = "Simple Goal";
+                    string goalType = "SimpleGoal";
                     bool complete = false;
                     Console.Write("What is the name of this goal? ");
                     string name = Console.ReadLine();
@@ -67,7 +66,7 @@ class Program
 
                 } else if (type == 2)
                 {
-                    string goalType = "Eternal Goal";
+                    string goalType = "EternalGoal";
                     bool complete = false;
 
                     Console.Write("What is the name of this goal? ");
@@ -87,9 +86,8 @@ class Program
 
                 } else if (type == 3)
                 {
-                    string goalType = "Checklist Goal";
+                    string goalType = "ChecklistGoal";
                     bool complete = false;
-                    bool bonusComplete = false;
 
                     Console.Write("What is the name of this goal? ");
                     string name = Console.ReadLine();
@@ -109,7 +107,7 @@ class Program
                     string bonus = Console.ReadLine();
                     int bonusPoints = int.Parse(bonus);
 
-                    Checklist checklistGoal = new Checklist(bonusComplete, bonusPoints, bonusTimes, complete, goalType, name, description, basePoints);
+                    Checklist checklistGoal = new Checklist(bonusPoints, bonusTimes, complete, goalType, name, description, basePoints);
                     goals.Add(checklistGoal.AssembleGoal());
                     goalObjects.Add(checklistGoal);
                     Console.WriteLine("Goal Added!\n");
@@ -119,7 +117,8 @@ class Program
             } 
             else if (response == 2)
             {
-                Console.WriteLine("Your goals are:");
+                
+                Console.WriteLine("\nYour goals are:");
 
                 for (int i = 0; i <= goals.Count - 1; i++)
                 {
@@ -128,18 +127,129 @@ class Program
             }
             else if (response == 3)
             {
-                Console.WriteLine("What is the name of the file you want to save to? ");
+                Console.Write("What is the name of the file you want to save to? ");
                 string fileName = Console.ReadLine();
 
                 using (StreamWriter outputFIle = new StreamWriter(fileName))
                 {
                     outputFIle.WriteLine(totalPoints);
-                    
+
                     foreach (Goal goal in goalObjects)
                     {
                         outputFIle.WriteLine(goal.saveInfo());
                     }
                 }
+
+                Console.WriteLine("File saved!\n");
+            } 
+            else if (response == 4)
+            {
+                Console.Write("What is the name of the file you want to load? ");
+                string fileName = Console.ReadLine();
+                List<string> lines = File.ReadAllLines(fileName).ToList();
+                string points = lines[0];
+                totalPoints = int.Parse(points);
+
+                lines = File.ReadAllLines(fileName).Skip(1).ToList();
+                Console.WriteLine("");
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(":");
+                    string key = parts[0];
+                    string data = parts[1];
+                    
+                    string[] value = data.Split(",");
+                    string name = value[0];
+                    string description = value[1];
+                    string bPoints = value[2];
+                    int basePoints = int.Parse(bPoints);
+                    
+
+                    if (key.ToLower() == "simplegoal")
+                    {
+                        string status = value[3];
+                        bool complete = bool.Parse(status);
+                        Simple simpleGoal = new Simple(complete, key, name, description, basePoints);
+                        goals.Add(simpleGoal.AssembleGoal());
+                        goalObjects.Add(simpleGoal);
+                    } 
+                    else if (key.ToLower() == "eternalgoal")
+                    {
+                        bool complete = false;
+                        Eternal eternalGoal = new Eternal(complete, key, name, description, basePoints);
+                        goals.Add(eternalGoal.AssembleGoal());
+                        goalObjects.Add(eternalGoal);
+                    }
+                    else if (key.ToLower() == "checklistgoal")
+                    {
+                        string status = value[3];
+                        bool complete = bool.Parse(status);
+                        string bnsPoints = value[4];
+                        int bonusPoints = int.Parse(bnsPoints);
+                        string length = value[5];
+                        int goalLength = int.Parse(length);
+                        string times = value[6];
+                        int timesCompleted = int.Parse(times);
+                        Checklist checklistGoal = new Checklist(bonusPoints, goalLength, complete, key, name, description, basePoints);
+                        goals.Add(checklistGoal.AssembleGoal());
+                        goalObjects.Add(checklistGoal);
+                    }
+
+                }
+
+                Console.WriteLine("\nLoading goals ...");
+                Thread.Sleep(3000);
+                Console.Clear();
+                Console.WriteLine("\nGoals Loaded!\n");
+                Thread.Sleep(1000);
+            }
+            else if (response == 5)
+            {
+                Console.WriteLine("Which goal did you complete?");
+                for (int i = 0; i <= goalObjects.Count - 1; i++)
+                {
+                    Console.WriteLine($"{i+1}. {goalObjects[i].getName()}");
+                } 
+                Console.Write("> ");
+                string goalChoice = Console.ReadLine();
+                int choiceNumber = int.Parse(goalChoice);
+                int index = choiceNumber - 1;
+                Goal goal = goalObjects[index];
+                string type = goal.getType();
+
+                if (type.ToLower() == "simplegoal")
+                {
+                    bool complete = true;
+                    goal.setStatus(complete);
+                    goals[index] = goal.AssembleGoal();
+                    totalPoints = goal.EarnPoints(totalPoints);
+                    
+                } else if (type.ToLower() == "checklistgoal")
+                {
+                    totalPoints = goal.EarnPoints(totalPoints);
+                    goals[index] = goal.AssembleGoal();
+                    
+                }
+
+                
+                
+                int earned = goal.getBasePoints();
+                Console.WriteLine($"\nCongratulations, you earned {earned} points.");
+            }
+            else if (response == 6)
+            {
+                break;
+            }
+            else 
+            {
+                Console.Clear();
+                Console.WriteLine("\nIncorrect input entered!");
+                Thread.Sleep(1000);
+                Console.Clear();
+                Console.WriteLine("Please try again!");
+                Thread.Sleep(2000);
+                Console.Clear();
+
             }
 
         }

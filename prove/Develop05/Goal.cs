@@ -1,3 +1,5 @@
+using System.Dynamic;
+
 public class Goal
 {
     protected string tracker = "[ ]";
@@ -26,6 +28,12 @@ public class Goal
         return _description;
     }
 
+    public void setStatus(bool status)
+    {
+        _complete = status;
+        tracker = "[X]";
+    }
+
     public virtual string AssembleGoal()
     {
         if (_complete)
@@ -39,13 +47,28 @@ public class Goal
         
     }
 
-    public virtual int EarnPoints(int points, int total)
+    public bool getStatus()
     {
-        return points += total;
+        return _complete;
+    }
+
+    public int getBasePoints()
+    {
+        return _basePoints;
+    }
+
+    public string getType()
+    {
+        return _type;
+    }
+
+    public virtual int EarnPoints(int total)
+    {
+        return _basePoints += total;
     }
 
     public virtual string saveInfo()
     {
-        return $"{_type}, {_name}, {_description}, {_basePoints}, {_complete}";
+        return $"{_type}:{_name},{_description},{_basePoints},{_complete}";
     }
 }
