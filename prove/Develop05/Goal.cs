@@ -1,6 +1,6 @@
 public class Goal
 {
-    string tracker = "[ ]";
+    protected string tracker = "[ ]";
     private bool _complete;
     private string _type;
     private string _name;
@@ -14,6 +14,16 @@ public class Goal
         _name = name;
         _description = description;
         _basePoints = basePoints;
+    }
+
+    public string getName()
+    {
+        return _name;
+    }
+
+    public string getDescription()
+    {
+        return _description;
     }
 
     public virtual string AssembleGoal()
@@ -34,5 +44,8 @@ public class Goal
         return points += total;
     }
 
-    
+    public virtual string saveInfo()
+    {
+        return $"{_type}, {_name}, {_description}, {_basePoints}, {_complete}";
+    }
 }

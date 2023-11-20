@@ -7,6 +7,11 @@ public class Simple : Goal
 
     }
 
+    public override string AssembleGoal()
+    {
+        return base.AssembleGoal();
+    }
+
     public override int EarnPoints(int points, int total)
     {
        return base.EarnPoints(points, total);

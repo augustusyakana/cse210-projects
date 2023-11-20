@@ -1,4 +1,4 @@
-using System;
+using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
 class Program
@@ -11,8 +11,9 @@ class Program
 
 
         Console.WriteLine("\nWelcome to the Eternal Quest Program!");
-        Console.WriteLine("Please choose an option from the following menu: ");
+        Console.WriteLine("Loading up the program.. ");
         Thread.Sleep(5000);
+        Console.Clear();
         
         
         int response = 0;
@@ -20,7 +21,7 @@ class Program
         while (response != 6)
         {
             Console.WriteLine($"Total Points: {totalPoints}");
-            Console.WriteLine("1. Create New Goal");
+            Console.WriteLine("\n1. Create New Goal");
             Console.WriteLine("2. List Goals");
             Console.WriteLine("3. Save Goals");
             Console.WriteLine("4. Load Goals");
@@ -42,6 +43,7 @@ class Program
 
                 if (type == 1)
                 {
+                    Console.WriteLine("\n");
                     // create instance of GOAL derived class
                     string goalType = "Simple Goal";
                     bool complete = false;
@@ -58,6 +60,54 @@ class Program
                     Simple simpleGoal = new Simple(complete, goalType, name, description, simplePoints);
 
                     goals.Add(simpleGoal.AssembleGoal());
+                    Console.WriteLine("Goal Added!\n");
+
+                } else if (type == 2)
+                {
+                    string goalType = "Eternal Goal";
+                    bool complete = false;
+
+                    Console.Write("What is the name of this goal? ");
+                    string name = Console.ReadLine();
+                    
+                    Console.Write("Provide a short description of this goal: ");
+                    string description = Console.ReadLine();
+
+                    Console.Write("What is the base point amount for this goal? ");
+                    string points = Console.ReadLine();
+                    int basePoints = int.Parse(points);
+
+                    Eternal eternalGoal = new Eternal(complete, goalType, name, description, basePoints);
+                    goals.Add(eternalGoal.AssembleGoal());
+                    Console.WriteLine("Goal Added!\n");
+
+                } else if (type == 3)
+                {
+                    string goalType = "Checklist Goal";
+                    bool complete = false;
+                    bool bonusComplete = false;
+
+                    Console.Write("What is the name of this goal? ");
+                    string name = Console.ReadLine();
+
+                    Console.Write("Provide a short description of this goal: ");
+                    string description = Console.ReadLine();
+
+                    Console.Write("What is the base points amount for this goal? ");
+                    string points = Console.ReadLine();
+                    int basePoints = int.Parse(points);
+
+                    Console.Write("How many times does this goal need to be accomplished to earn bonus points? ");
+                    string times = Console.ReadLine();
+                    int bonusTimes = int.Parse(times);
+
+                    Console.Write("What is the bonus amount for this goal? ");
+                    string bonus = Console.ReadLine();
+                    int bonusPoints = int.Parse(bonus);
+
+                    Checklist checklistGoal = new Checklist(bonusComplete, bonusPoints, bonusTimes, complete, goalType, name, description, basePoints);
+                    goals.Add(checklistGoal.AssembleGoal());
+                    Console.WriteLine("Goal Added!\n");
 
                 }
                 
@@ -71,8 +121,12 @@ class Program
                     Console.WriteLine($"{i+1}. {goals[i]}");
                 } 
             }
+            else if (response == 3)
+            {
+                
+            }
 
         }
 
     }
-}
+}  
