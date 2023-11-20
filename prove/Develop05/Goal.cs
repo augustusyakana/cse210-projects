@@ -1,5 +1,6 @@
 public class Goal
 {
+    string tracker = "[ ]";
     private bool _complete;
     private string _type;
     private string _name;
@@ -15,8 +16,23 @@ public class Goal
         _basePoints = basePoints;
     }
 
+    public virtual string AssembleGoal()
+    {
+        if (_complete)
+        {
+            tracker = "[X]";
+            return $"{tracker} {_name} ({_description})";
+        } else 
+        {
+            return $"{tracker} {_name} ({_description})";
+        }
+        
+    }
+
     public virtual int EarnPoints(int points, int total)
     {
         return points += total;
     }
+
+    
 }

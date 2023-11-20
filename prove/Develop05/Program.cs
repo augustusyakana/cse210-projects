@@ -7,7 +7,7 @@ class Program
     {
 
         int totalPoints = 0;
-        List<Goal> goals = new List<Goal>();
+        List<string> goals = new List<string>();
 
 
         Console.WriteLine("\nWelcome to the Eternal Quest Program!");
@@ -57,8 +57,19 @@ class Program
 
                     Simple simpleGoal = new Simple(complete, goalType, name, description, simplePoints);
 
+                    goals.Add(simpleGoal.AssembleGoal());
+
                 }
                 
+            } 
+            else if (response == 2)
+            {
+                Console.WriteLine("Your goals are:");
+
+                for (int i = 0; i <= goals.Count - 1; i++)
+                {
+                    Console.WriteLine($"{i+1}. {goals[i]}");
+                } 
             }
 
         }
