@@ -14,6 +14,7 @@ class Program
 
         Console.WriteLine("\nWelcome to the Eternal Quest Program!");
         Console.WriteLine("Loading up the program.. ");
+        Thread.Sleep(2000);
         Console.Clear();
         
         
@@ -229,9 +230,11 @@ class Program
                     totalPoints = goal.EarnPoints(totalPoints);
                     goals[index] = goal.AssembleGoal();
                     
+                } else if (type.ToLower() == "eternalgoal")
+                {
+                    totalPoints = goal.EarnPoints(totalPoints);
+                    goals[index] = goal.AssembleGoal();
                 }
-
-                
                 
                 int earned = goal.getBasePoints();
                 Console.WriteLine($"\nCongratulations, you earned {earned} points.");

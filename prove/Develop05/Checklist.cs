@@ -1,5 +1,6 @@
 public class Checklist : Goal
 {
+    bool bonusTime = false;
     private int _bonusPoints;
     private int _goalLength;
     private int _timesCompleted = 0;
@@ -22,11 +23,28 @@ public class Checklist : Goal
         }
     }
 
-    
+    private void checkBonusStatus(int total)
+    {
+        if (_timesCompleted == _goalLength)
+        {
+            
+            tracker = "[X]";
+            Console.WriteLine($"\nCongratulations, you earned a Bonus of {_bonusPoints} points.");
+            bonusTime = true;
+            setStatus(true);
+            
+            
+        }
+        else
+        {
+            Console.WriteLine($"\n{_goalLength - _timesCompleted} times left to earn bonus points.");
+        }
+    }
 
     private void updateTimesCompleted()
     {
         _timesCompleted = _timesCompleted + 1;
+
     }
 
     public override string saveInfo()
@@ -37,9 +55,11 @@ public class Checklist : Goal
     public override int EarnPoints(int total)
     {   
         updateTimesCompleted();
-        if (_timesCompleted < _goalLength)
+        checkBonusStatus(total);
+
+        if (bonusTime)
         {
-            return base.EarnPoints(total);
+            return base.EarnPoints(total) + _bonusPoints;
         } else
         {
             return base.EarnPoints(total);

@@ -64,7 +64,7 @@ public class Goal
 
     public virtual int EarnPoints(int total)
     {
-        return _basePoints += total;
+        return total = total + _basePoints;
     }
 
     public virtual string saveInfo()
