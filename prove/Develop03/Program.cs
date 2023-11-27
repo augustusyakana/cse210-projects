@@ -15,21 +15,18 @@ class Program
         string scriptureReference = reference.getReference();
         
         Scripture scripture = new Scripture(scriptureReference, scriptureText);
-        string rndmWord = scripture.getWord();
-        string response = "playing";
-        // scripture.seeWords();
+        string response = "";
         
 
-        while (response != "quit"){
-            Word word = new Word(rndmWord);
+        while (response != "quit")
+        {
             Console.WriteLine(scripture.getScripture());
-            Console.Write("\nPress Enter to hide words in the scripture, or enter 'quit' to exit: ");
+            Console.WriteLine("Press enter to hide words or type quit to exit.");
             response = Console.ReadLine();
-            string RandomWord = word.getWord();
-            bool status = word.getStatus();
-            
-            Console.Clear();
         }
+        
+
+        
         
     }
 }

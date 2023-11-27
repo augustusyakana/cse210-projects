@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Text;
 
 public class Scripture {
@@ -15,6 +16,7 @@ public class Scripture {
     
 
     public string getScripture(){
+        hideWord();
         return $"{_reference} \n{_scripture}";
     }
 
@@ -26,11 +28,19 @@ public class Scripture {
     }
 
 
-    public string hideWord() {
+    public void hideWord() {
         var random = new Random();
         int index = random.Next(_words.Count - 1);
         string randomWord = _words[index];
         
+        string hiddenWord = new string('_', randomWord.Length);
+        if (_scripture.Contains(randomWord))
+        {
+            _scripture = _scripture.Replace(hiddenWord, randomWord);
+        } else
+        {
+            hideWord();
+        }
 
     }
 

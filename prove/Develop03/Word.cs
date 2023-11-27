@@ -2,9 +2,9 @@ public class Word{
     private string _word;
     private bool _hidden;
 
-    public Word(string rndmWord){
-        _word = rndmWord;
-        setStatus();
+
+    public Word(){
+       
     }
 
     private void setStatus() {
@@ -22,6 +22,20 @@ public class Word{
 
     public string getWord(){
         return _word;
+    }
+
+    private void SetWord(string word)
+    {
+        _word = word;
+
+    }
+
+    public string getHiddenWord(string word)
+    {
+        SetWord(word);
+        string hiddenWord = new string('_', _word.Length);
+        return _word = hiddenWord.Replace(hiddenWord, _word);
+        
     }
 
 
