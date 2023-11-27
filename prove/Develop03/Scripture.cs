@@ -5,45 +5,42 @@ public class Scripture {
 
     private string _scripture;
     private string _reference;
-    private List<string> _words = new List<string>();
+
+    Word wordsToHide = new Word();
 
     public Scripture(string reference, string scripture) {
         _scripture = scripture;
         _reference = reference;
-        separateWords();
+        splitScripture();
     }
 
-    
-
     public string getScripture(){
-        hideWord();
         return $"{_reference} \n{_scripture}";
     }
 
-    private void separateWords(){
+    private void splitScripture()
+    {
         string[] words = _scripture.Split(" ");
-        foreach (string word in words) {
-            _words.Add(word);
+
+        foreach (string word in words)
+        {
+            wordsToHide.setWord(word);
         }
     }
 
+    private void HideWords()
+    {
+        string hiddenWord = wordsToHide.GetWord();
+        string result = new string('_', hiddenWord.Length);
 
-    public void hideWord() {
-        var random = new Random();
-        int index = random.Next(_words.Count - 1);
-        string randomWord = _words[index];
-        
-        string hiddenWord = new string('_', randomWord.Length);
-        if (_scripture.Contains(randomWord))
-        {
-            _scripture = _scripture.Replace(hiddenWord, randomWord);
-        } else
-        {
-            hideWord();
-        }
 
+       _scripture = _scripture.Replace(hiddenWord, result);
     }
 
-    
+    public string GetScriptureWithHiddenWords()
+    {
+        HideWords();
+        return _scripture;
+    }
     
 }

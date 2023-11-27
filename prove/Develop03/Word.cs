@@ -2,41 +2,60 @@ public class Word{
     private string _word;
     private bool _hidden;
 
+    List<string> words = new List<string>();
+    List<string> hiddenWords = new List<string>();
+
 
     public Word(){
        
     }
 
-    private void setStatus() {
-        if (!_word.Contains("_")){
+    private void CheckStatus()
+    {
+        if (hiddenWords.Contains(_word))
+        {
             _hidden = false;
-        } else {
-            _hidden = true;
+        }
+        else 
+        {
+            _hidden = false;
         }
     }
 
-    public bool getStatus(){
-        return _hidden;
-        
-    }
-
-    public string getWord(){
-        return _word;
-    }
-
-    private void SetWord(string word)
+    public void setWord(string word)
     {
         _word = word;
+        words.Add(word);
+    }
+
+    public string GetWord()
+    {
+        GetRandomWord();
+        CheckStatus();
+        
+        if (_hidden == true) 
+        {
+            return _word;
+        }
+        else 
+        {
+            GetRandomWord();
+            CheckStatus();
+            return _word;
+        }
 
     }
 
-    public string getHiddenWord(string word)
+    private void GetRandomWord()
     {
-        SetWord(word);
-        string hiddenWord = new string('_', _word.Length);
-        return _word = hiddenWord.Replace(hiddenWord, _word);
+        var randm = new Random();
+        int index = randm.Next(words.Count - 1);
+
+        string rndmWord = words[index];
+        _word = rndmWord;
         
     }
+    
 
 
 }

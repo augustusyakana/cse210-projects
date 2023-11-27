@@ -16,16 +16,30 @@ class Program
         
         Scripture scripture = new Scripture(scriptureReference, scriptureText);
         string response = "";
+
+        Console.WriteLine("\nHere is the scripture you will be memorizing:");
+        Console.WriteLine(scripture.getScripture());
+        Thread.Sleep(3000);
+        Console.Clear();
         
 
         while (response != "quit")
         {
-            Console.WriteLine(scripture.getScripture());
-            Console.WriteLine("Press enter to hide words or type quit to exit.");
-            response = Console.ReadLine();
-        }
-        
+            if (response == "")
+            {
+                Console.WriteLine(scripture.GetScriptureWithHiddenWords());
+                Console.WriteLine("\nPress enter to hide words or type quit to exit.");
+                response = Console.ReadLine();
+                Console.Clear();
 
+            } else if (response == "quit")
+            {
+                Console.WriteLine("Quitting Program...");
+                Thread.Sleep(3000);
+                Console.Clear();
+                Console.WriteLine("Program terminated!");
+            }
+        } 
         
         
     }
