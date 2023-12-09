@@ -7,20 +7,18 @@ public class Swimming : Activity
         _laps = laps;
     }
 
-    public override string CalculateDistance()
+    public override double CalculateDistance()
     {
-        return $"{_laps * 50 / 1000 * 0.62}";
+        return _laps * 50 / 1000 * 0.62;
     }
-    public override string CalculateSpeed()
+    public override double CalculateSpeed()
     {
-        string dstnce = CalculateDistance();
-        int distance = int.Parse(dstnce);
-        return $"{distance / GetLength() * 60}";
+        double distance = CalculateDistance();
+        return distance / GetLength() * 60;
     }
-    public override string CalculatePace()
+    public override double CalculatePace()
     {
-        string dstnce = CalculateDistance();
-        int distance = int.Parse(dstnce);
-        return $"{GetLength() / distance}";
+        
+        return GetLength() / CalculateDistance();
     }
 }

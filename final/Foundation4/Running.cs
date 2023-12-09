@@ -1,22 +1,22 @@
 public class Running : Activity
 {
-    private int _distance;
+    private double _distance;
 
-    public Running(int distance, string type, string date, int length) : base(type, date, length)
+    public Running(double distance, string type, string date, int length) : base(type, date, length)
     {
         _distance = distance;
     }
 
-    public override string CalculateDistance()
+    public override double CalculateDistance()
     {
-        return $"{_distance}";
+        return _distance;
     }
-    public override string CalculateSpeed()
+    public override double CalculateSpeed()
     {
-        return $"{_distance / GetLength() * 60}";
+        return (_distance / GetLength()) * 60;
     }
-    public override string CalculatePace()
+    public override double CalculatePace()
     {
-        return $"{GetLength() / _distance}";
+        return GetLength() / _distance;
     }
 }

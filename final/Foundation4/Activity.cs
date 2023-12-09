@@ -38,20 +38,20 @@ public class Activity
         _length = length;
     }
 
-    public virtual string CalculateDistance()
+    public virtual double CalculateDistance()
     {
-        return $"";
+        return 0.00;
     }
-   public virtual string CalculateSpeed()
+   public virtual double CalculateSpeed()
    {
-        return $"";
+        return 0.00;
    }
-   public virtual string CalculatePace()
+   public virtual double CalculatePace()
    {
-        return $"";
+        return 0.00;
    }
    public virtual string GetSummary()
    {
-    return $"{_date} {_type} ({_length} Min) Distance: {CalculateDistance()} miles, Speed: {CalculateSpeed()} mph, Pace: {CalculatePace()} min per mile";
+    return $"{_date} {_type} ({_length} Min) Distance: {Math.Round(CalculateDistance(), 2)} miles, Speed: {Math.Round(CalculateSpeed(), 2)} mph, Pace: {Math.Round(CalculatePace(), 2)} min per mile";
    }
 }
