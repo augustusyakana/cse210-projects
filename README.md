@@ -7,12 +7,12 @@ focuses on designing and implementing software using OOP
 principles to create modular, reusable, and maintainable code.
 
 # Topics Covered:
-Classes and objects
-Encapsulation, inheritance, and polymorphism
-Abstraction and interfaces
-Design patterns and best practices
-File handling and data persistence
-Exception handling and debugging
+- Classes and objects
+- Encapsulation, inheritance, and polymorphism
+- Abstraction and interfaces
+- Design patterns and best practices
+- File handling and data persistence
+- Exception handling and debugging
 
 # Console-Based Programs
 All programs in this repository run in console mode (terminal only), 
